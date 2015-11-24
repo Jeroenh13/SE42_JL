@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
  * @author Jeroen Hendriks
  */
 public class Opdracht1 {
-    private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("SE42");
+    private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("BankPU");
     public EntityManager em;
     
     public Opdracht1() {
