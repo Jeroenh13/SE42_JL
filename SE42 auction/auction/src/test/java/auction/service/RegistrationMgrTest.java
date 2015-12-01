@@ -8,21 +8,32 @@ import org.junit.Before;
 import org.junit.Test;
 
 import auction.domain.User;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 public class RegistrationMgrTest {
+    
+    private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("auctionPU");
+    public EntityManager em = emf.createEntityManager();
 
     private RegistrationMgr registrationMgr;
 
     @Before
     public void setUp() throws Exception {
+        
         registrationMgr = new RegistrationMgr();
     }
 
     @Test
     public void registerUser() {
         User user1 = registrationMgr.registerUser("xxx1@yyy");
+        em.getTransaction().begin();
+        em.persist(user1);
         assertTrue(user1.getEmail().equals("xxx1@yyy"));
         User user2 = registrationMgr.registerUser("xxx2@yyy2");
+        em.persist(user2);
+        em.getTransaction().commit();
         assertTrue(user2.getEmail().equals("xxx2@yyy2"));
         User user2bis = registrationMgr.registerUser("xxx2@yyy2");
         assertSame(user2bis, user2);
