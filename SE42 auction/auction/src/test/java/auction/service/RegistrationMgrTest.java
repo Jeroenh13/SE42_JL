@@ -41,7 +41,6 @@ public class RegistrationMgrTest {
         assertNull(registrationMgr.registerUser("abc"));
     }
 
-    @Test
     public void getUser() {
         User user1 = registrationMgr.registerUser("xxx5@yyy5");
         User userGet = registrationMgr.getUser("xxx5@yyy5");
@@ -51,7 +50,6 @@ public class RegistrationMgrTest {
         assertNull(registrationMgr.getUser("abc"));
     }
 
-    @Test
     public void getUsers() {
         List<User> users = registrationMgr.getUsers();
         assertEquals(0, users.size());
