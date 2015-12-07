@@ -1,6 +1,6 @@
 package auction.dao;
 
-import auction.domain.User;
+import auction.domain.Account;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,10 +8,10 @@ import javax.persistence.EntityExistsException;
 
 public class UserDAOCollectionImpl implements UserDAO {
 
-    private HashMap<String, User> users;
+    private HashMap<String, Account> users;
 
     public UserDAOCollectionImpl() {
-        users = new HashMap<String, User>();
+        users = new HashMap<String, Account>();
     }
 
     @Override
@@ -20,7 +20,7 @@ public class UserDAOCollectionImpl implements UserDAO {
     }
 
     @Override
-    public void create(User user) {
+    public void create(Account user) {
          if (findByEmail(user.getEmail()) != null) {
             throw new EntityExistsException();
         }
@@ -28,7 +28,7 @@ public class UserDAOCollectionImpl implements UserDAO {
     }
 
     @Override
-    public void edit(User user) {
+    public void edit(Account user) {
         if (findByEmail(user.getEmail()) == null) {
             throw new IllegalArgumentException();
         }
@@ -37,17 +37,17 @@ public class UserDAOCollectionImpl implements UserDAO {
 
 
     @Override
-    public List<User> findAll() {
-        return new ArrayList<User>(users.values());
+    public List<Account> findAll() {
+        return new ArrayList<Account>(users.values());
     }
 
     @Override
-    public User findByEmail(String email) {
+    public Account findByEmail(String email) {
         return users.get(email);
     }
 
     @Override
-    public void remove(User user) {
+    public void remove(Account user) {
         users.remove(user.getEmail());
     }
 }

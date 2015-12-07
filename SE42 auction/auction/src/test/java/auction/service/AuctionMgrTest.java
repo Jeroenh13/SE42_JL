@@ -10,7 +10,7 @@ import org.junit.Test;
 import auction.domain.Bid;
 import auction.domain.Category;
 import auction.domain.Item;
-import auction.domain.User;
+import auction.domain.Account;
 import java.util.ArrayList;
 
 public class AuctionMgrTest {
@@ -32,7 +32,7 @@ public class AuctionMgrTest {
         String email = "xx2@nl";
         String omsch = "omsch";
 
-        User seller1 = registrationMgr.registerUser(email);
+        Account seller1 = registrationMgr.registerUser(email);
         Category cat = new Category("cat2");
         Item item1 = sellerMgr.offerItem(seller1, cat, omsch);
         Item item2 = auctionMgr.getItem(item1.getId());
@@ -47,8 +47,8 @@ public class AuctionMgrTest {
         String email4 = "xx4@nl";
         String omsch2 = "omsch2";
 
-        User seller3 = registrationMgr.registerUser(email3);
-        User seller4 = registrationMgr.registerUser(email4);
+        Account seller3 = registrationMgr.registerUser(email3);
+        Account seller4 = registrationMgr.registerUser(email4);
         Category cat = new Category("cat3");
         Item item1 = sellerMgr.offerItem(seller3, cat, omsch);
         Item item2 = sellerMgr.offerItem(seller4, cat, omsch);
@@ -69,9 +69,9 @@ public class AuctionMgrTest {
         String emailb2 = "bb2@nl";
         String omsch = "omsch_bb";
 
-        User seller = registrationMgr.registerUser(email);
-        User buyer = registrationMgr.registerUser(emailb);
-        User buyer2 = registrationMgr.registerUser(emailb2);
+        Account seller = registrationMgr.registerUser(email);
+        Account buyer = registrationMgr.registerUser(emailb);
+        Account buyer2 = registrationMgr.registerUser(emailb2);
         // eerste bod
         Category cat = new Category("cat9");
         Item item1 = sellerMgr.offerItem(seller, cat, omsch);

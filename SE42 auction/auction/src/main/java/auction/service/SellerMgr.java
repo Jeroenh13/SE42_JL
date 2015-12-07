@@ -2,7 +2,7 @@ package auction.service;
 
 import auction.domain.Category;
 import auction.domain.Item;
-import auction.domain.User;
+import auction.domain.Account;
 
 public class SellerMgr {
 
@@ -13,7 +13,7 @@ public class SellerMgr {
      * @return het item aangeboden door seller, behorende tot de categorie cat
      *         en met de beschrijving description
      */
-    public Item offerItem(User seller, Category cat, String description) {
+    public Item offerItem(Account seller, Category cat, String description) {
         // TODO 
         return null;
     }

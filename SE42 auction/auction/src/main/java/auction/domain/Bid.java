@@ -6,10 +6,10 @@ import nl.fontys.util.Money;
 public class Bid {
 
     private FontysTime time;
-    private User buyer;
+    private Account buyer;
     private Money amount;
 
-    public Bid(User buyer, Money amount) {
+    public Bid(Account buyer, Money amount) {
         //TODO
     }
 
@@ -17,7 +17,7 @@ public class Bid {
         return time;
     }
 
-    public User getBuyer() {
+    public Account getBuyer() {
         return buyer;
     }
 

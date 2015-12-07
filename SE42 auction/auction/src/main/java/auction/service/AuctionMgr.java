@@ -3,7 +3,7 @@ package auction.service;
 import nl.fontys.util.Money;
 import auction.domain.Bid;
 import auction.domain.Item;
-import auction.domain.User;
+import auction.domain.Account;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +36,7 @@ public class AuctionMgr  {
      * @return het nieuwe bod ter hoogte van amount op item door buyer, tenzij
      *         amount niet hoger was dan het laatste bod, dan null
      */
-    public Bid newBid(Item item, User buyer, Money amount) {
+    public Bid newBid(Item item, Account buyer, Money amount) {
         // TODO 
         return null;
     }

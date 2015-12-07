@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import auction.domain.Category;
 import auction.domain.Item;
-import auction.domain.User;
+import auction.domain.Account;
 
 public class SellerMgrTest {
 
@@ -33,7 +33,7 @@ public class SellerMgrTest {
     public void testOfferItem() {
         String omsch = "omsch";
 
-        User user1 = registrationMgr.registerUser("xx@nl");
+        Account user1 = registrationMgr.registerUser("xx@nl");
         Category cat = new Category("cat1");
         Item item1 = sellerMgr.offerItem(user1, cat, omsch);
         assertEquals(omsch, item1.getDescription());
@@ -49,8 +49,8 @@ public class SellerMgrTest {
         String omsch2 = "omsch2";
         
     
-        User seller = registrationMgr.registerUser("sel@nl");
-        User buyer = registrationMgr.registerUser("buy@nl");
+        Account seller = registrationMgr.registerUser("sel@nl");
+        Account buyer = registrationMgr.registerUser("buy@nl");
         Category cat = new Category("cat1");
         
             // revoke before bidding

@@ -1,7 +1,7 @@
 package auction.service;
 
 import java.util.*;
-import auction.domain.User;
+import auction.domain.Account;
 import auction.dao.UserDAOCollectionImpl;
 import auction.dao.UserDAO;
 import auction.dao.UserDAOJPAImpl;
@@ -21,13 +21,14 @@ public class RegistrationMgr {
      * e-mailadres (nieuw aangemaakt of reeds bestaand). Als het e-mailadres
      * onjuist is ( het bevat geen '@'-teken) wordt null teruggegeven.
      */
-    public User registerUser(String email) {
+    public Account registerUser(String email) {
         EntityManager em = emf.createEntityManager();
         UserDAO userDAO = new UserDAOJPAImpl(em);
+        em.getTransaction().begin();
         if (!email.contains("@")) {
             return null;
         }
-        User user = new User(email);
+        Account user = new Account(email);
         try{
             userDAO.create(user);
             em.getTransaction().commit();
@@ -46,10 +47,10 @@ public class RegistrationMgr {
      * @return Het Userobject dat geïdentificeerd wordt door het gegeven
      * e-mailadres of null als zo'n User niet bestaat.
      */
-    public User getUser(String email) {
+    public Account getUser(String email) {
         EntityManager em = emf.createEntityManager();
         UserDAO userDAO = new UserDAOJPAImpl(em);
-        User user = null;
+        Account user = null;
         em.getTransaction().begin();
         try{
             user = userDAO.findByEmail(email);
@@ -66,10 +67,10 @@ public class RegistrationMgr {
     /**
      * @return Een iterator over alle geregistreerde gebruikers
      */
-    public List<User> getUsers() {
+    public List<Account> getUsers() {
         EntityManager em = emf.createEntityManager();
         UserDAO userDAO = new UserDAOJPAImpl(em);
-        List<User> users = null;
+        List<Account> users = null;
         em.getTransaction().begin();
         try{
             users = userDAO.findAll();

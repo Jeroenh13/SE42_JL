@@ -5,12 +5,12 @@ import nl.fontys.util.Money;
 public class Item implements Comparable {
 
     private Long id;
-    private User seller;
+    private Account seller;
     private Category category;
     private String description;
     private Bid highest;
 
-    public Item(User seller, Category category, String description) {
+    public Item(Account seller, Category category, String description) {
         this.seller = seller;
         this.category = category;
         this.description = description;
@@ -20,7 +20,7 @@ public class Item implements Comparable {
         return id;
     }
 
-    public User getSeller() {
+    public Account getSeller() {
         return seller;
     }
 
@@ -36,7 +36,7 @@ public class Item implements Comparable {
         return highest;
     }
 
-    public Bid newBid(User buyer, Money amount) {
+    public Bid newBid(Account buyer, Money amount) {
         if (highest != null && highest.getAmount().compareTo(amount) >= 0) {
             return null;
         }

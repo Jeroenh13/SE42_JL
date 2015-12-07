@@ -4,17 +4,17 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
-public class User implements Serializable{
+public class Account implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     private String email;
 
-    public User() {
+    public Account() {
     }
     
-    public User(String email) {
+    public Account(String email) {
         this.email = email;
 
     }

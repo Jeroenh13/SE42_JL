@@ -1,6 +1,6 @@
 package auction.dao;
 
-import auction.domain.User;
+import auction.domain.Account;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -16,37 +16,37 @@ public class UserDAOJPAImpl implements UserDAO {
 
     @Override
     public int count() {
-        Query q = em.createNamedQuery("User.count",User.class);
+        Query q = em.createNamedQuery("User.count",Account.class);
         return ((Long) q.getSingleResult()).intValue();
     }
 
     @Override
-    public void create(User user) {
+    public void create(Account user) {
         em.persist(user);
     }
 
     @Override
-    public void edit(User user) {
+    public void edit(Account user) {
         em.merge(user);
     }
 
 
     @Override
-    public List<User> findAll() {
+    public List<Account> findAll() {
         CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-        cq.select(cq.from(User.class));
+        cq.select(cq.from(Account.class));
         return em.createQuery(cq).getResultList();
     }
 
     @Override
-    public User findByEmail(String email) {
-        Query q = em.createNamedQuery("User.findByEmail", User.class);
+    public Account findByEmail(String email) {
+        Query q = em.createNamedQuery("User.findByEmail", Account.class);
         q.setParameter("email", email);
-        return (User) q.getSingleResult();
+        return (Account) q.getSingleResult();
     }
 
     @Override
-    public void remove(User user) {
+    public void remove(Account user) {
         em.remove(em.merge(user));
     }
 }
