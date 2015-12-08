@@ -31,7 +31,6 @@ public class JPARegistrationMgr {
         Account user = new Account(email);
         try{
             userDAO.create(user);
-            //em.getTransaction().commit();
         }catch (Exception e) {
             e.printStackTrace();
             em.getTransaction().rollback();
@@ -54,7 +53,6 @@ public class JPARegistrationMgr {
         em.getTransaction().begin();
         try{
             user = userDAO.findByEmail(email);
-            em.getTransaction().commit();
         }catch (Exception e) {
             e.printStackTrace();
             em.getTransaction().rollback();
@@ -74,7 +72,6 @@ public class JPARegistrationMgr {
         em.getTransaction().begin();
         try{
             users = userDAO.findAll();
-            em.getTransaction().commit();
         }catch (Exception e) {
             e.printStackTrace();
             em.getTransaction().rollback();
