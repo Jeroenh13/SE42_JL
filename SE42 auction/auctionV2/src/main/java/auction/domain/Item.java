@@ -23,6 +23,9 @@ public class Item implements Comparable, Serializable {
     private String description;
     private Bid highest;
 
+    public Item() {
+    }
+
     public Item(Account seller, Category category, String description) {
         this.seller = seller;
         this.category = category;

@@ -25,8 +25,10 @@ public class SellerMgr {
      * en met de beschrijving description
      */
     public Item offerItem(Account seller, Category cat, String description) {
+        em.getTransaction().begin();
         Item i = new Item(seller, cat, description);
         itemDAO.create(i);
+        em.getTransaction().commit();
         return i;
     }
 
@@ -36,12 +38,15 @@ public class SellerMgr {
      * verwijderd. false als er al geboden was op het item.
      */
     public boolean revokeItem(Item item) {
-        if (item.getBids().size() == 0) {
+        em.getTransaction().begin();
+        if ("0".equals(item.getHighestBid().getAmount().getValue()))
+        {
             System.out.println("deleted");
             itemDAO.remove(item);
             return true;
         }
-        System.out.println("NO!!!");
+        System.out.println("no");
+        em.getTransaction().commit();
         return false;
     }
 }
