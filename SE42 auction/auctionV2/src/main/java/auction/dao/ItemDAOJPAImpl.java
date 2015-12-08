@@ -65,5 +65,4 @@ public class ItemDAOJPAImpl implements ItemDAO {
     public void remove(Item item) {
         em.remove(em.merge(item));
     }
-
 }
