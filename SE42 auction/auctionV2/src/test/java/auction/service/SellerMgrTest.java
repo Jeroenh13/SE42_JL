@@ -23,10 +23,10 @@ public class SellerMgrTest {
 
     @Before
     public void setUp() throws Exception {
-        dc.clean();
         registrationMgr = new JPARegistrationMgr();
         auctionMgr = new AuctionMgr();
         sellerMgr = new SellerMgr();
+        dc.clean();
     }
 
     /**

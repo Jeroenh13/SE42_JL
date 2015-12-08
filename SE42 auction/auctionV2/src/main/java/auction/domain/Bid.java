@@ -1,6 +1,7 @@
 package auction.domain;
 
 import java.io.Serializable;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,14 +9,12 @@ import javax.persistence.Id;
 import nl.fontys.util.FontysTime;
 import nl.fontys.util.Money;
 
-@Entity
+@Embeddable
 public class Bid implements Serializable {
 
     private FontysTime time;
     private Account buyer;
     private Money amount;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     public Bid() {
