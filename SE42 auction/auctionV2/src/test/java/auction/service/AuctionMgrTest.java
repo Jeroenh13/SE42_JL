@@ -12,18 +12,22 @@ import auction.domain.Category;
 import auction.domain.Item;
 import auction.domain.Account;
 import java.util.ArrayList;
+import javax.persistence.Persistence;
+import nl.fontys.util.DatabaseCleaner;
 
 public class AuctionMgrTest {
 
     private AuctionMgr auctionMgr;
     private JPARegistrationMgr registrationMgr;
     private SellerMgr sellerMgr;
+    DatabaseCleaner dc = new DatabaseCleaner(Persistence.createEntityManagerFactory("auctionPU").createEntityManager());
 
     @Before
     public void setUp() throws Exception {
         registrationMgr = new JPARegistrationMgr();
         auctionMgr = new AuctionMgr();
         sellerMgr = new SellerMgr();
+        dc.clean();
     }
 
     @Test
