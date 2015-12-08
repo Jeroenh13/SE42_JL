@@ -61,17 +61,23 @@ public class JPARegistrationMgrTest {
         em.close();
     }
 
+    @Test
     public void getUsers() {
+        em.getTransaction().begin();
         List<Account> users = registrationMgr.getUsers();
         assertEquals(0, users.size());
 
         Account user1 = registrationMgr.registerUser("xxx8@yyy");
+        em.persist(user1);
+        em.getTransaction().commit();
         users = registrationMgr.getUsers();
         assertEquals(1, users.size());
-        assertSame(users.get(0), user1);
+        assertEquals(users.get(0).getEmail(), user1.getEmail());
 
-
+        em.getTransaction().begin();
         Account user2 = registrationMgr.registerUser("xxx9@yyy");
+        em.persist(user2);
+        em.getTransaction().commit();
         users = registrationMgr.getUsers();
         assertEquals(2, users.size());
 
