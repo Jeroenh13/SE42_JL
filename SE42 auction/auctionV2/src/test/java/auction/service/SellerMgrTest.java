@@ -18,14 +18,15 @@ public class SellerMgrTest {
     private AuctionMgr auctionMgr;
     private JPARegistrationMgr registrationMgr;
     private SellerMgr sellerMgr;
+
     DatabaseCleaner dc = new DatabaseCleaner(Persistence.createEntityManagerFactory("auctionPU").createEntityManager());
 
     @Before
     public void setUp() throws Exception {
+        dc.clean();
         registrationMgr = new JPARegistrationMgr();
         auctionMgr = new AuctionMgr();
         sellerMgr = new SellerMgr();
-        dc.clean();
     }
 
     /**
