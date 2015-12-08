@@ -7,6 +7,7 @@ package auction.dao;
 
 import auction.domain.Account;
 import auction.domain.Item;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -55,10 +56,11 @@ public class ItemDAOJPAImpl implements ItemDAO {
     }
 
     @Override
-    public List<Item> findByDescription(String description) {
+    public ArrayList<Item> findByDescription(String description) {
         Query q = em.createNamedQuery("Item.findByDescription", Item.class);
         q.setParameter("description", description);
-        return (List<Item>) q.getResultList();
+        List<Item> list = q.getResultList();
+        return (ArrayList<Item>)list;
     }
 
     @Override
