@@ -57,9 +57,9 @@ public class ItemDAOJPAImpl implements ItemDAO {
 
     @Override
     public ArrayList<Item> findByDescription(String description) {
-        Query q = em.createNamedQuery("Item.findByDescription", Item.class);
+        Query q = em.createNamedQuery("Item.findByDescription");
         q.setParameter("description", description);
-        List<Item> list = q.getResultList();
+        ArrayList<Item> list = (ArrayList<Item>) q.getResultList();
         return (ArrayList<Item>)list;
     }
 

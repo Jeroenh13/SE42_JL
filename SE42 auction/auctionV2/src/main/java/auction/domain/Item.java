@@ -20,7 +20,7 @@ import nl.fontys.util.Money;
             query = "select i from Item as i where i.id = :id"),
     @NamedQuery(
             name = "Item.findByDescription",
-            query = "select i from Item as i where i.description = :description")
+            query = "select i from Item as i where i.description LIKE :description")
 })
 
 public class Item implements Comparable, Serializable {
