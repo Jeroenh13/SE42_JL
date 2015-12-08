@@ -11,6 +11,7 @@ import auction.domain.Account;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import nl.fontys.util.DatabaseCleaner;
 
 public class JPARegistrationMgrTest {
     
@@ -18,11 +19,13 @@ public class JPARegistrationMgrTest {
     public EntityManager em = emf.createEntityManager();
 
     private JPARegistrationMgr registrationMgr;
-
+    
     @Before
     public void setUp() throws Exception {
-        
+        System.out.print("before");
         registrationMgr = new JPARegistrationMgr();
+        DatabaseCleaner dc = new DatabaseCleaner(Persistence.createEntityManagerFactory("auctionPU").createEntityManager());
+        dc.clean();
     }
 
     @Test
@@ -40,15 +43,22 @@ public class JPARegistrationMgrTest {
         assertEquals(user2bis.getEmail(), user2.getEmail());
         //geen @ in het adres
         assertNull(registrationMgr.registerUser("abc"));
+        em.close();
     }
 
+    @Test
     public void getUser() {
+        em.getTransaction().begin();
         Account user1 = registrationMgr.registerUser("xxx5@yyy5");
+        em.persist(user1);
+        em.getTransaction().commit();
         Account userGet = registrationMgr.getUser("xxx5@yyy5");
-        assertSame(userGet, user1);
+        //check on the same email
+        assertEquals(userGet.getEmail(), user1.getEmail());
         assertNull(registrationMgr.getUser("aaa4@bb5"));
         registrationMgr.registerUser("abc");
         assertNull(registrationMgr.getUser("abc"));
+        em.close();
     }
 
     public void getUsers() {

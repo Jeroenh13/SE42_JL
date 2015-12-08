@@ -12,7 +12,8 @@ import javax.persistence.Persistence;
 public class JPARegistrationMgr {
     
     private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("auctionPU");
-
+    
+    
     /**
      * Registreert een gebruiker met het als parameter gegeven e-mailadres, mits
      * zo'n gebruiker nog niet bestaat.

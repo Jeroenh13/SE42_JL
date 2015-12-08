@@ -4,7 +4,13 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
-public class Account implements Serializable{
+@NamedQuery(
+   name = "Account.findByEmail", 
+   query = "select a from Account as a where a.email = :email"
+)
+
+
+public class Account implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,7 +19,7 @@ public class Account implements Serializable{
 
     public Account() {
     }
-    
+
     public Account(String email) {
         this.email = email;
 
