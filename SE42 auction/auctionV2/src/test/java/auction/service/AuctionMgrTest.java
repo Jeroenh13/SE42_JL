@@ -27,7 +27,7 @@ public class AuctionMgrTest {
         registrationMgr = new JPARegistrationMgr();
         auctionMgr = new AuctionMgr();
         sellerMgr = new SellerMgr();
-        dc.clean();
+        // dc.clean();
     }
 
     @Test

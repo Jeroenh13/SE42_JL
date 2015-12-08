@@ -5,14 +5,24 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import nl.fontys.util.Money;
 
 @Entity
-@NamedQuery(
-   name = "Item.count", 
-   query = "select count(i) from Item as i"
-)
+@NamedQueries({
+    @NamedQuery(
+            name = "Item.count",
+            query = "select count(i) from Item as i"
+    ),
+    @NamedQuery(
+            name = "Item.findByID",
+            query = "select i from Item as i where i.id = :id"),
+    @NamedQuery(
+            name = "Item.findByDescription",
+            query = "select i from Item as i where i.description = :description")
+})
+
 public class Item implements Comparable, Serializable {
 
     @Id
