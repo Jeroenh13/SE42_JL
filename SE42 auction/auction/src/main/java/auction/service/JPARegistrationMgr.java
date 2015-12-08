@@ -32,6 +32,7 @@ public class JPARegistrationMgr {
         Account user = new Account(email);
         try{
             userDAO.create(user);
+            em.getTransaction().commit();
         }catch (Exception e) {
             e.printStackTrace();
             em.getTransaction().rollback();

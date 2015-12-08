@@ -9,7 +9,6 @@ import javax.persistence.*;
    query = "select a from Account as a where a.email = :email"
 )
 
-
 public class Account implements Serializable {
 
     @Id
