@@ -29,7 +29,6 @@ public class JPARegistrationMgrTest {
     @Test
     public void registerUser() {
         Account user1 = registrationMgr.registerUser("xxx1@yyy");
-        em.getTransaction().begin();
         assertTrue(user1.getEmail().equals("xxx1@yyy"));
         Account user2 = registrationMgr.registerUser("xxx2@yyy2");
 
@@ -39,7 +38,6 @@ public class JPARegistrationMgrTest {
         assertEquals(user2bis.getEmail(), user2.getEmail());
         //geen @ in het adres
         assertNull(registrationMgr.registerUser("abc"));
-        em.close();
     }
 
     @Test
