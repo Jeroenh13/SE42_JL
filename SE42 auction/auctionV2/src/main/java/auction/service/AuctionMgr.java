@@ -9,6 +9,7 @@ import auction.domain.Bid;
 import auction.domain.Item;
 import auction.domain.Account;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;

@@ -39,14 +39,16 @@ public class SellerMgr {
      */
     public boolean revokeItem(Item item) {
         em.getTransaction().begin();
-        if ("0".equals(item.getHighestBid().getAmount().getValue()))
-        {
+
+        if (item.getHighestBid() == null) {
             System.out.println("deleted");
             itemDAO.remove(item);
+            em.getTransaction().commit();
             return true;
+        } else {
+            System.out.println("no");
+            return false;
         }
-        System.out.println("no");
-        em.getTransaction().commit();
-        return false;
+
     }
 }

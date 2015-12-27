@@ -10,6 +10,7 @@ import org.junit.Test;
 import auction.domain.Category;
 import auction.domain.Item;
 import auction.domain.Account;
+import java.util.ArrayList;
 import javax.persistence.Persistence;
 import nl.fontys.util.DatabaseCleaner;
 

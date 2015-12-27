@@ -52,15 +52,14 @@ public class ItemDAOJPAImpl implements ItemDAO {
     public List<Item> findAll() {
         CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
         cq.select(cq.from(Item.class));
-        return em.createQuery(cq).getResultList();
+        return new ArrayList(em.createQuery(cq).getResultList());
     }
 
     @Override
     public ArrayList<Item> findByDescription(String description) {
         Query q = em.createNamedQuery("Item.findByDescription");
         q.setParameter("description", description);
-        ArrayList<Item> list = (ArrayList<Item>) q.getResultList();
-        return (ArrayList<Item>)list;
+        return new ArrayList(q.getResultList());
     }
 
     @Override
