@@ -11,7 +11,7 @@ import javax.persistence.Id;
 public class Category implements Serializable {
 
     private String description;
-    private Long id;
+    private Long cat_id;
     
     public Category() {
         description = "undefined";
@@ -26,10 +26,10 @@ public class Category implements Serializable {
     }
 
     public Long getId() {
-        return id;
+        return cat_id;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.cat_id = id;
     }
 }

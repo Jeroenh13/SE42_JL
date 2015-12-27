@@ -13,7 +13,7 @@ public class Account implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long acc_id;
     private String email;
 
     public Account() {

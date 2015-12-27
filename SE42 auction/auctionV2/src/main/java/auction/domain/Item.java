@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import nl.fontys.util.Money;
@@ -17,20 +18,21 @@ import nl.fontys.util.Money;
     ),
     @NamedQuery(
             name = "Item.findByID",
-            query = "select i from Item as i where i.id = :id"),
+            query = "select i from Item as i where i.item_id = :id"),
     @NamedQuery(
             name = "Item.findByDescription",
-            query = "select i from Item as i where i.description LIKE :description")
+            query = "select i from Item as i where i.descr LIKE :description")
 })
 
 public class Item implements Comparable, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long item_id;
+    @ManyToOne
     private Account seller;
     private Category category;
-    private String description;
+    private String descr;
     private Bid highest;
 
     public Item() {
@@ -39,11 +41,11 @@ public class Item implements Comparable, Serializable {
     public Item(Account seller, Category category, String description) {
         this.seller = seller;
         this.category = category;
-        this.description = description;
+        this.descr = description;
     }
 
     public Long getId() {
-        return id;
+        return item_id;
     }
 
     public Account getSeller() {
@@ -55,7 +57,7 @@ public class Item implements Comparable, Serializable {
     }
 
     public String getDescription() {
-        return description;
+        return descr;
     }
 
     public Bid getHighestBid() {
