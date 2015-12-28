@@ -1,6 +1,9 @@
 package auction.domain;
 
 import java.io.Serializable;
+import java.util.Random;
+import javax.persistence.CascadeType;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import nl.fontys.util.Money;
 
 @Entity
@@ -29,10 +34,12 @@ public class Item implements Comparable, Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long item_id;
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.PERSIST)
     private Account seller;
+    @Embedded
     private Category category;
     private String descr;
+    @OneToOne
     private Bid highest;
 
     public Item() {
@@ -78,12 +85,11 @@ public class Item implements Comparable, Serializable {
     }
 
     public boolean equals(Object o) {
-        //TODO
-        return false;
+        return o.equals(this);
     }
 
     public int hashCode() {
-        //TODO
-        return 0;
+        Random rnd = new Random();
+        return rnd.nextInt(159875) * 28;
     }
 }

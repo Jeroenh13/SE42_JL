@@ -27,6 +27,7 @@ public class SellerMgr {
     public Item offerItem(Account seller, Category cat, String description) {
         em.getTransaction().begin();
         Item i = new Item(seller, cat, description);
+        seller.addItem(i);
         itemDAO.create(i);
         em.getTransaction().commit();
         return i;
