@@ -89,13 +89,19 @@ public class ItemsFromSellerTest {
     public void testBids()
     {
         String email = "ifu1@nl";
-        Account user10 = registrationMgr.registerUser(email);
+        Account user1 = registrationMgr.registerUser(email);
+        Account user2 = registrationMgr.registerUser("jj@jj.com");
         String omsch1 = "omsch_ifu1";
         Category cat = new Category("cat2");
         
-        Item item10 = sellerMgr.offerItem(user10, cat, omsch1);
+        Item item1 = sellerMgr.offerItem(user1, cat, omsch1);
         
-        item10.newBid(user10, new Money(5000, Money.EURO));
+        item1.newBid(user2, new Money(5000, Money.EURO));
+        
+        assertEquals(5000, item1.getHighestBid().getAmount().getCents());
+        assertEquals(user2, item1.getHighestBid().getBuyer());
+        assertEquals(user1, item1.getSeller());
+        
     }
     
     @Test
