@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -16,6 +18,7 @@ import javax.persistence.OneToOne;
 import nl.fontys.util.Money;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @NamedQueries({
     @NamedQuery(
             name = "Item.count",
@@ -79,15 +82,23 @@ public class Item implements Comparable, Serializable {
         return highest;
     }
 
+    @Override
     public int compareTo(Object arg0) {
         //TODO
         return -1;
     }
 
+    @Override
     public boolean equals(Object o) {
-        return o.equals(this);
+        if (o == null) {
+            return false;
+        } else if (o.getClass() != this.getClass()) {
+            return false;
+        }
+        return ((Item) o).getId() == this.item_id;
     }
 
+    @Override
     public int hashCode() {
         Random rnd = new Random();
         return rnd.nextInt(159875) * 28;
