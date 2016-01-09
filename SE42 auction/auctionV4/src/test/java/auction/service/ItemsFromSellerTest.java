@@ -18,7 +18,7 @@ public class ItemsFromSellerTest {
     final EntityManagerFactory emf = Persistence.createEntityManagerFactory("auctionPU");
     final EntityManager em = emf.createEntityManager();
     private AuctionMgr auctionMgr;
-    private RegistrationMgr registrationMgr;
+    private JPARegistrationMgr registrationMgr;
     private SellerMgr sellerMgr;
 
     public ItemsFromSellerTest() {
@@ -26,7 +26,7 @@ public class ItemsFromSellerTest {
 
     @Before
     public void setUp() throws Exception {
-        registrationMgr = new RegistrationMgr();
+        registrationMgr = new JPARegistrationMgr();
         auctionMgr = new AuctionMgr();
         sellerMgr = new SellerMgr();
         new DatabaseCleaner(em).clean();

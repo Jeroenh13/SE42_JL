@@ -39,9 +39,8 @@ public class SellerMgr {
      * verwijderd. false als er al geboden was op het item.
      */
     public boolean revokeItem(Item item) {
-        em.getTransaction().begin();
-
         if (item.getHighestBid() == null) {
+            em.getTransaction().begin();
             System.out.println("deleted");
             itemDAO.remove(item);
             em.getTransaction().commit();
