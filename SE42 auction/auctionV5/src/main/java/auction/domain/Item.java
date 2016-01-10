@@ -3,6 +3,7 @@ package auction.domain;
 import java.io.Serializable;
 import java.util.Random;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -17,6 +19,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import nl.fontys.util.Money;
 
+/**
+ *
+ * @author jeroe
+ */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @NamedQueries({
@@ -37,11 +43,14 @@ public class Item implements Comparable, Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long item_id;
-    @ManyToOne(cascade=CascadeType.PERSIST)
+    
+    @ManyToOne
     private Account seller;
+    
     @Embedded
     private Category category;
     private String descr;
+    
     @OneToOne
     private Bid highest;
 
@@ -82,23 +91,15 @@ public class Item implements Comparable, Serializable {
         return highest;
     }
 
-    @Override
     public int compareTo(Object arg0) {
         //TODO
         return -1;
     }
 
-    @Override
     public boolean equals(Object o) {
-        if (o == null) {
-            return false;
-        } else if (o.getClass() != this.getClass()) {
-            return false;
-        }
-        return ((Item) o).getId() == this.item_id;
+        return o.equals(this);
     }
 
-    @Override
     public int hashCode() {
         Random rnd = new Random();
         return rnd.nextInt(159875) * 28;

@@ -18,7 +18,7 @@ public class ItemsFromSellerTest {
     final EntityManagerFactory emf = Persistence.createEntityManagerFactory("auctionPU");
     final EntityManager em = emf.createEntityManager();
     private AuctionMgr auctionMgr;
-    private RegistrationMgr registrationMgr;
+    private JPARegistrationMgr registrationMgr;
     private SellerMgr sellerMgr;
 
     public ItemsFromSellerTest() {
@@ -26,7 +26,7 @@ public class ItemsFromSellerTest {
 
     @Before
     public void setUp() throws Exception {
-        registrationMgr = new RegistrationMgr();
+        registrationMgr = new JPARegistrationMgr();
         auctionMgr = new AuctionMgr();
         sellerMgr = new SellerMgr();
         new DatabaseCleaner(em).clean();
@@ -89,8 +89,10 @@ public class ItemsFromSellerTest {
     public void testBids()
     {
         String email = "ifu1@nl";
+        String email2 = "pp@pp.nl";
         Account user1 = registrationMgr.registerUser(email);
         Account user2 = registrationMgr.registerUser("jj@jj.com");
+        Account user3 = registrationMgr.registerUser((email2));
         String omsch1 = "omsch_ifu1";
         Category cat = new Category("cat2");
         
@@ -102,10 +104,13 @@ public class ItemsFromSellerTest {
         assertEquals(user2, item1.getHighestBid().getBuyer());
         assertEquals(user1, item1.getSeller());
         
+        Bid bid2 = auctionMgr.newBid(item1, user3, new Money(5001, Money.EURO));
+        
+        assertEquals(5001, item1.getHighestBid().getAmount().getCents());
+        assertEquals(user3, item1.getHighestBid().getBuyer());
     }
-    
+  
     @Test
-//    @Ignore
     public void getItemsFromSeller() {
         String email = "ifu1@nl";
         String omsch1 = "omsch_ifu1";
@@ -128,8 +133,6 @@ public class ItemsFromSellerTest {
 
         // Explain difference in above two tests for te iterator of 'same' user
 
-        
-        
         Account user20 = registrationMgr.getUser(email);
         Item item20 = sellerMgr.offerItem(user20, cat, omsch2);
         Iterator<Item> it20 = user20.getOfferedItems();

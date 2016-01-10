@@ -17,9 +17,12 @@ public class Account implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long acc_id;
+    
+    @Column(unique = true)
     private String email;
-    @OneToMany(mappedBy = "seller", cascade=CascadeType.PERSIST)
-    Set<Item> offeredItems = new HashSet<>();;
+    
+    @OneToMany(mappedBy = "seller")
+    Set<Item> offeredItems = new HashSet<>();
 
     public Account() {        
     }
