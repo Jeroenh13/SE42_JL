@@ -4,3 +4,14 @@
 /SE42 auction/auction/src/main/resources/META-INF/.LCKpersistence.xml~
 /SE42 auction/auctionV2/target/
 SE42 auction/auctionV2/src/main/resources/META-INF/persistence.xml
+/CalculatorService/target/
+/Webservices/nbproject/private/
+/Webservices/build/
+/Webservices/dist/
+/Webservices/CalculatorService/target/
+/Webservices/CalculatorClient/target/
+/Webservices/CalcClient/nbproject/private/
+/Webservices/CalcClient/build/
+/Webservices/CalcClient/dist/
+/Webservices/CalcService/nbproject/private/
+/Webservices/CalcService/build/
