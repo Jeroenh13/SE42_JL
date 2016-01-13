@@ -20,6 +20,7 @@ import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import nl.fontys.util.Money;
 
 /**
@@ -89,7 +90,7 @@ public class Item implements Comparable, Serializable {
     }
 
     public Bid newBid(Account buyer, Money amount) {
-        if (highest != null && highest.getAmount().compareTo(amount) >= 0) {
+        if (highest != null && highest.getAmount().compareTo(amount) >= 0 ) {
             return null;
         }
         highest = new Bid(buyer, amount);

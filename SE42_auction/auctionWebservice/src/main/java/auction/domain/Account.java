@@ -8,13 +8,14 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @NamedQuery(
-   name = "Account.findByEmail", 
-   query = "select a from Account as a where a.email = :email"
+        name = "Account.findByEmail",
+        query = "select a from Account as a where a.email = :email"
 )
 
 public class Account implements Serializable {
@@ -22,14 +23,15 @@ public class Account implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long acc_id;
-    
+
     @Column(unique = true)
     private String email;
-    
-    @OneToMany(mappedBy = "seller")
-    Set<Item> offeredItems = new HashSet<>();
 
-    public Account() {        
+    //@XmlTransient
+    //@OneToMany(mappedBy = "seller")
+    //Set<Item> offeredItems = new HashSet<>();
+
+    public Account() {
     }
 
     public Account(String email) {
@@ -40,19 +42,18 @@ public class Account implements Serializable {
     public String getEmail() {
         return email;
     }
-    
-    public void addItem(Item i)
-    {
+
+    /*
+    public void addItem(Item i) {
         offeredItems.add(i);
     }
-    
-    public int numberOfOfferedItems()
-    {
+
+    public int numberOfOfferedItems() {
         return offeredItems.size();
     }
-    
-    public Iterator getOfferedItems()
-    {
+
+    public Iterator getOfferedItems() {
         return offeredItems.iterator();
     }
+    */
 }

@@ -6,6 +6,7 @@
 package auction.dao;
 
 import auction.domain.Account;
+import auction.domain.Bid;
 import auction.domain.Item;
 import java.util.ArrayList;
 import java.util.List;
@@ -64,6 +65,12 @@ public class ItemDAOJPAImpl implements ItemDAO {
 
     @Override
     public void remove(Item item) {
-        em.remove(item);
+        em.remove(em.merge(item));
+    }
+    
+    @Override
+    public void addBid(Item item, Bid bid)
+    {
+        em.persist(bid);
     }
 }

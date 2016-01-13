@@ -11,16 +11,17 @@ import auction.domain.Account;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class AuctionMgr {
 
     private ItemDAO itemDAO;
-    private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("auctionPU");
+    private final EntityManager em = Persistence.createEntityManagerFactory("auctionPU").createEntityManager();
 
     public AuctionMgr() {
-        itemDAO = new ItemDAOJPAImpl(emf.createEntityManager());
+        itemDAO = new ItemDAOJPAImpl(em);
     }
 
     /**
@@ -48,8 +49,24 @@ public class AuctionMgr {
      * amount niet hoger was dan het laatste bod, dan null
      */
     public Bid newBid(Item item, Account buyer, Money amount) {
-        Bid b = item.newBid(buyer, amount);
-        itemDAO.create(item);
-        return b;
+
+        Bid bid = null;
+        if (item.getHighestBid() != null) {
+            if (item.getHighestBid().getAmount().getCents() < amount.getCents()) {
+                em.getTransaction().begin();
+                bid = item.newBid(buyer, amount);
+                itemDAO.addBid(item, bid);
+                itemDAO.edit(item);
+                em.getTransaction().commit();
+            }
+
+        } else {
+            em.getTransaction().begin();
+            bid = item.newBid(buyer, amount);
+            itemDAO.addBid(item, bid);
+            itemDAO.edit(item);
+            em.getTransaction().commit();
+        }
+        return bid;
     }
 }

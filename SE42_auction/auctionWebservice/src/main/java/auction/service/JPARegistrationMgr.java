@@ -33,12 +33,12 @@ public class JPARegistrationMgr {
      * onjuist is ( het bevat geen '@'-teken) wordt null teruggegeven.
      */
     public Account registerUser(String email) {
-        em.getTransaction().begin();
         if (!email.contains("@")) {
             return null;
         }
         Account user = new Account(email);
         try{
+            em.getTransaction().begin();
             userDAO.create(user);
             em.getTransaction().commit();
         }catch (Exception e) {
@@ -56,8 +56,8 @@ public class JPARegistrationMgr {
      */
     public Account getUser(String email) {
         Account user = null;
-        em.getTransaction().begin();
         try{
+            em.getTransaction().begin();
             user = userDAO.findByEmail(email);
             em.getTransaction().commit();
         }catch (Exception e) {
@@ -72,8 +72,8 @@ public class JPARegistrationMgr {
      */
     public List<Account> getUsers() {
         List<Account> users = null;
-        em.getTransaction().begin();
         try{
+            em.getTransaction().begin();
             users = userDAO.findAll();
             em.getTransaction().commit();
         }catch (Exception e) {

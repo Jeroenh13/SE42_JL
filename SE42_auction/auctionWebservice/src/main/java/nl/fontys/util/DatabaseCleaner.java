@@ -5,13 +5,12 @@ import auction.domain.Bid;
 import auction.domain.Item;
 import java.sql.SQLException;
 import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
 import javax.persistence.metamodel.EntityType;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
-@XmlAccessorType(XmlAccessType.FIELD)
 public class DatabaseCleaner {
 
     private static final Class<?>[] ENTITY_TYPES = {
@@ -19,8 +18,13 @@ public class DatabaseCleaner {
         Bid.class,
         Account.class,
     };
-    private final EntityManager em;
-
+    
+    private EntityManager em = Persistence.createEntityManagerFactory("auctionPU").createEntityManager();
+    DatabaseCleaner db;
+        
+    public DatabaseCleaner(){
+        db = new DatabaseCleaner(em);
+    }
     public DatabaseCleaner(EntityManager entityManager) {
         em = entityManager;
     }
@@ -32,7 +36,7 @@ public class DatabaseCleaner {
             deleteEntities(entityType);
         }
         em.getTransaction().commit();
-        //em.close();
+        em.close();
     }
 
     private void deleteEntities(Class<?> entityType) {

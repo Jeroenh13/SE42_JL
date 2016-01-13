@@ -11,7 +11,6 @@ import auction.domain.Category;
 import auction.domain.Item;
 import auction.service.AuctionMgr;
 import auction.service.JPARegistrationMgr;
-import auction.service.RegistrationMgr;
 import auction.service.SellerMgr;
 import java.util.List;
 import javax.jws.WebService;

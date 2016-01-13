@@ -26,16 +26,12 @@ public class Bid implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bid_id;
     
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     private Account buyer;
 
     @Embedded
     private Money amount;
-    
-    //@ManyToOne(cascade = CascadeType.PERSIST)
-    //@JoinColumn(nullable=false)
-    //private Item item;
-    
+       
     @Column
     private FontysTime time;
 

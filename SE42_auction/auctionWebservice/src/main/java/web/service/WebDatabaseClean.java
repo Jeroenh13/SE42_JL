@@ -24,12 +24,11 @@ public class WebDatabaseClean {
     
     public void CleanDatabase()
     {
-        dc = new DatabaseCleaner(Persistence.createEntityManagerFactory("auctionPU").createEntityManager());
         try {
+            dc = new DatabaseCleaner();
             dc.clean();
         } catch (SQLException ex) {
             Logger.getLogger(WebDatabaseClean.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
     }
 }
