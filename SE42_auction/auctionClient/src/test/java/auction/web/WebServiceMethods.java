@@ -41,7 +41,7 @@ public class WebServiceMethods {
         return port.offerItem(seller, cat, description);
     }
     
-    public boolean revokeItem(Item item)
+    public static boolean revokeItem(Item item)
     {
         Auction port = auctionService.getAuctionPort();
         return port.revokeItem(item);

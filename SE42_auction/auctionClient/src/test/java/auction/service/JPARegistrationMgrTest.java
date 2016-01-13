@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import auction.web.WebServiceMethods;
+import java.util.List;
 import web.service.*;
 
 public class JPARegistrationMgrTest {
@@ -35,9 +36,9 @@ public class JPARegistrationMgrTest {
         assertNull(WebServiceMethods.getUser("abc"));
     }
 
-    //@Test
+    /*
+    @Test
     public void getUsers() {
-        /*
         em.getTransaction().begin();
         List<Account> users = registrationMgr.getUsers();
         assertEquals(0, users.size());
@@ -56,6 +57,6 @@ public class JPARegistrationMgrTest {
         users = registrationMgr.getUsers();
         assertEquals(2, users.size());
         em.close();
-                */
     }
+    */
 }

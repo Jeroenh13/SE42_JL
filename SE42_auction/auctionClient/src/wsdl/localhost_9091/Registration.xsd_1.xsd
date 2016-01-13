@@ -2,17 +2,9 @@
 
 <xs:element name="account" type="tns:account"></xs:element>
 
-<xs:element name="bid" type="tns:bid"></xs:element>
-
-<xs:element name="category" type="tns:category"></xs:element>
-
 <xs:element name="getUser" type="tns:getUser"></xs:element>
 
 <xs:element name="getUserResponse" type="tns:getUserResponse"></xs:element>
-
-<xs:element name="item" type="tns:item"></xs:element>
-
-<xs:element name="money" type="tns:money"></xs:element>
 
 <xs:element name="registerUser" type="tns:registerUser"></xs:element>
 
@@ -34,45 +26,7 @@
 <xs:sequence>
 <xs:element name="acc_id" type="xs:long" minOccurs="0"></xs:element>
 <xs:element name="email" type="xs:string" minOccurs="0"></xs:element>
-<xs:element name="offeredItems" type="tns:item" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
 </xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="item">
-<xs:sequence>
-<xs:element name="item_id" type="xs:long" minOccurs="0"></xs:element>
-<xs:element name="seller" type="tns:account" minOccurs="0"></xs:element>
-<xs:element name="category" type="tns:category" minOccurs="0"></xs:element>
-<xs:element name="descr" type="xs:string" minOccurs="0"></xs:element>
-<xs:element name="highest" type="tns:bid" minOccurs="0"></xs:element>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="category">
-<xs:sequence>
-<xs:element name="description" type="xs:string" minOccurs="0"></xs:element>
-<xs:element name="cat_id" type="xs:long" minOccurs="0"></xs:element>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="bid">
-<xs:sequence>
-<xs:element name="bid_id" type="xs:long" minOccurs="0"></xs:element>
-<xs:element name="buyer" type="tns:account" minOccurs="0"></xs:element>
-<xs:element name="amount" type="tns:money" minOccurs="0"></xs:element>
-<xs:element name="time" type="tns:fontysTime" minOccurs="0"></xs:element>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="money">
-<xs:sequence>
-<xs:element name="currency" type="xs:string" minOccurs="0"></xs:element>
-<xs:element name="cents" type="xs:long"></xs:element>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="fontysTime">
-<xs:sequence></xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="getUser">
