@@ -18,7 +18,7 @@ import java.security.SecureRandom;
  *
  * @author jeroe
  */
-public class KeyCreation {
+public class Application1 {
 
     static Utils utils = new Utils();
 

@@ -5,8 +5,10 @@
  */
 package encryption;
 
+import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -31,6 +33,21 @@ public class Utils {
 
     }
 
+    public Key getKey(File file)
+    {
+        try {
+            ObjectInputStream keyIn = new ObjectInputStream(new FileInputStream(file));
+            return (Key) keyIn.readObject();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException | ClassNotFoundException ex) {
+            Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    
+    
     public String readFile(File file) {
         FileInputStream fis = null;
         String result = "";
@@ -76,10 +93,10 @@ public class Utils {
         SecureRandom random = new SecureRandom();
         pairgen.initialize(KEYSIZE, random);
         KeyPair keyPair = pairgen.generateKeyPair();
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("PublicKey"))) {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("PublicKey.p12"))) {
             out.writeObject(keyPair.getPublic());
         }
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("PrivateKey"))) {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("PrivateKey.p12"))) {
             out.writeObject(keyPair.getPrivate());
         }
     }
