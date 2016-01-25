@@ -7,6 +7,7 @@ package web.service;
 
 import auction.domain.Account;
 import auction.service.JPARegistrationMgr;
+import java.util.List;
 import javax.jws.WebService;
 
 /**
@@ -27,5 +28,10 @@ public class Registration {
 
     public Account getUser(String email) {
         return registrationMgr.getUser(email);
+    }
+    
+    public List<Account> getUsers()
+    {
+        return registrationMgr.getUsers();
     }
 }
