@@ -5,6 +5,7 @@
  */
 package encryption;
 
+import Utils.Utils;
 import static encryption.Application2.utils;
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,6 +18,7 @@ import java.security.PublicKey;
 import java.security.Signature;
 import java.security.SignatureException;
 import java.security.spec.X509EncodedKeySpec;
+import java.util.Base64;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.crypto.BadPaddingException;
@@ -45,8 +47,14 @@ public class Application3 {
             int length = (int)ois.readInt();
             byte[] sig = (byte[]) ois.readObject();
             String data = (String) ois.readObject();
+            //byte[] ciphered = Base64.getDecoder().decode();
             
-            
+            //Cipher cipher = Cipher.getInstance("RSA");
+            //cipher.init(Cipher.DECRYPT_MODE, publicKey);
+            //byte[] decrypted = cipher.doFinal((byte[]) ois.readObject());
+
+            //System.out.println(data);
+                       
             boolean verifies = sign.verify(sig);
             
             if(verifies)

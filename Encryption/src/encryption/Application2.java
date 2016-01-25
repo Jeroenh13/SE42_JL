@@ -5,19 +5,14 @@
  */
 package encryption;
 
-import java.io.DataInputStream;
+import Utils.Utils;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.InputStream;
 import java.io.ObjectOutputStream;
 import java.security.*;
-import java.security.spec.InvalidKeySpecException;
-import java.security.spec.PKCS8EncodedKeySpec;
-import java.util.Arrays;
-import java.util.Base64;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.crypto.Cipher;
 
 /**
  *
@@ -34,12 +29,17 @@ public class Application2 {
         try {
             String input = utils.readFile(new File("INPUT.EXT"));
             PrivateKey privateKey = (PrivateKey)utils.getKey(new File("PrivateKey.p12"));
+            Key publicKey = utils.getKey(new File("PublicKey.p12"));
             
             Signature sign = Signature.getInstance("SHA1withRSA");
-            sign.initSign( privateKey);
+            sign.initSign(privateKey);
             byte[] signLength = sign.sign();
             
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("INPUT(SIGNEDbyLK.EXT")));
+            
+            //Cipher cipher = Cipher.getInstance("RSA");
+            ///cipher.init(Cipher.ENCRYPT_MODE, publicKey);
+            //byte[] ciphered = cipher.doFinal(input.getBytes("UTF8"));
             
             oos.writeInt(signLength.length);
             oos.writeObject(signLength);

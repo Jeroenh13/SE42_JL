@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package encryption;
+package Utils;
 
+import java.awt.FileDialog;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,6 +23,9 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -100,9 +104,21 @@ public class Utils {
             out.writeObject(keyPair.getPrivate());
         }
     }
-
-    public void WriteFile(String name) {
-
+    
+    public File getEncryptFile()
+    {
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Save encrypted file");
+        fc.setInitialDirectory(new File("D:\\Git\\SE42_JL\\Encryption\\output"));
+        fc.setInitialFileName("Encrypted");
+        return fc.showSaveDialog(new Stage());
     }
-
+    
+    public File getDecryptFile()
+    {
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Open encrypted file");
+        fc.setInitialDirectory(new File("D:\\Git\\SE42_JL\\Encryption\\output"));
+        return fc.showOpenDialog(new Stage());
+    }
 }

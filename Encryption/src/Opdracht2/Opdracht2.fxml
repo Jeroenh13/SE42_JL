@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="343.0" prefWidth="425.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Opdracht2.Opdracht2Controller">
+   <children>
+      <PasswordField fx:id="pwField" layoutX="138.0" layoutY="48.0" />
+      <Label layoutX="69.0" layoutY="52.0" text="Password" />
+      <TextArea fx:id="taMessage" layoutX="17.0" layoutY="107.0" prefHeight="157.0" prefWidth="391.0" />
+      <Button fx:id="btnEncrypt" layoutX="17.0" layoutY="291.0" mnemonicParsing="false" onAction="#Encrypt" text="Encrypt" />
+      <Button fx:id="btnDecrypt" layoutX="356.0" layoutY="291.0" mnemonicParsing="false" onAction="#Decrypt" text="Decrypt" />
+   </children>
+</AnchorPane>
