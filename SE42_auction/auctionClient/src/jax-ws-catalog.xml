@@ -4,10 +4,10 @@
     <system systemId="http://localhost:8080/Auction?xsd=1" uri="wsdl/localhost_8080/Auction.xsd_1.xsd"/>
     <system systemId="http://localhost:9090/Registration?wsdl" uri="wsdl/localhost_9090/Registration.wsdl"/>
     <system systemId="http://localhost:9090/Registration?xsd=1" uri="wsdl/localhost_9090/Registration.xsd_1.xsd"/>
-    <system systemId="http://localhost:9091/Registration?wsdl" uri="wsdl/localhost_9091/Registration.wsdl"/>
-    <system systemId="http://localhost:9091/Registration?xsd=1" uri="wsdl/localhost_9091/Registration.xsd_1.xsd"/>
     <system systemId="http://localhost:9092/DatabaseCleaner?wsdl" uri="wsdl/localhost_9092/DatabaseCleaner.wsdl"/>
     <system systemId="http://localhost:9092/DatabaseCleaner?xsd=1" uri="wsdl/localhost_9092/DatabaseCleaner.xsd_1.xsd"/>
     <system systemId="http://localhost:9090/Auction?wsdl" uri="wsdl/localhost_9090/Auction.wsdl"/>
     <system systemId="http://localhost:9090/Auction?xsd=1" uri="wsdl/localhost_9090/Auction.xsd_1.xsd"/>
+    <system systemId="http://localhost:9091/Registration?wsdl" uri="wsdl/localhost_9091/Registration.wsdl"/>
+    <system systemId="http://localhost:9091/Registration?xsd=1" uri="wsdl/localhost_9091/Registration.xsd_1.xsd"/>
 </catalog>

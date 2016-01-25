@@ -6,6 +6,10 @@
 
 <xs:element name="getUserResponse" type="tns:getUserResponse"></xs:element>
 
+<xs:element name="getUsers" type="tns:getUsers"></xs:element>
+
+<xs:element name="getUsersResponse" type="tns:getUsersResponse"></xs:element>
+
 <xs:element name="registerUser" type="tns:registerUser"></xs:element>
 
 <xs:element name="registerUserResponse" type="tns:registerUserResponse"></xs:element>
@@ -26,6 +30,16 @@
 <xs:sequence>
 <xs:element name="acc_id" type="xs:long" minOccurs="0"></xs:element>
 <xs:element name="email" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getUsers">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getUsersResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:account" minOccurs="0" maxOccurs="unbounded"></xs:element>
 </xs:sequence>
 </xs:complexType>
 

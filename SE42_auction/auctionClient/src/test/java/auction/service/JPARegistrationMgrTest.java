@@ -36,27 +36,24 @@ public class JPARegistrationMgrTest {
         assertNull(WebServiceMethods.getUser("abc"));
     }
 
-    /*
+    
     @Test
     public void getUsers() {
-        em.getTransaction().begin();
-        List<Account> users = registrationMgr.getUsers();
+        List<Account> users = WebServiceMethods.getUsers();
         assertEquals(0, users.size());
 
-        Account user1 = registrationMgr.registerUser("xxx8@yyy");
-        users = registrationMgr.getUsers();
+        Account user1 = WebServiceMethods.registerUser("xxx8@yyy");
+        users = WebServiceMethods.getUsers();
         assertEquals(1, users.size());
         assertEquals(users.get(0).getEmail(), user1.getEmail());
 
-        Account user2 = registrationMgr.registerUser("xxx9@yyy");
-        users = registrationMgr.getUsers();
+        Account user2 = WebServiceMethods.registerUser("xxx9@yyy");
+        users = WebServiceMethods.getUsers();
         assertEquals(2, users.size());
 
-        registrationMgr.registerUser("abc");
+        WebServiceMethods.registerUser("abc");
         //geen nieuwe user toegevoegd, dus gedrag hetzelfde als hiervoor
-        users = registrationMgr.getUsers();
+        users = WebServiceMethods.getUsers();
         assertEquals(2, users.size());
-        em.close();
     }
-    */
 }

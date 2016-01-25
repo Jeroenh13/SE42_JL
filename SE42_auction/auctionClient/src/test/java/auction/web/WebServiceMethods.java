@@ -59,6 +59,12 @@ public class WebServiceMethods {
         return port.getUser(email);
     }
     
+    public static List<Account> getUsers()
+    {
+        Registration port = registrationService.getRegistrationPort();
+        return port.getUsers();
+    }
+    
     public static void cleanDatabase()
     {
         WebDatabaseClean port = databaseCleaner.getWebDatabaseCleanPort();
