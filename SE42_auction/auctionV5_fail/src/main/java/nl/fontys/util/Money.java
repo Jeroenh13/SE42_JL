@@ -3,12 +3,7 @@ package nl.fontys.util;
 import java.io.*;
 import java.text.*;
 import javax.persistence.Embeddable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
-@XmlAccessorType(XmlAccessType.FIELD)
 @Embeddable
 public class Money implements Serializable, Comparable {
 
@@ -16,7 +11,7 @@ public class Money implements Serializable, Comparable {
 
 	public static final String EURO = "\u20AC";
 
-	public Money() {
+	private Money() {
 		currency="undefined";
 	}
 	
